@@ -1,0 +1,11 @@
+import pandas as pd
+cars=pd.read_csv("cars.csv")
+print(cars)
+date= pd.DatetimeIndex(cars['Month'])
+print(date)
+cars['month']=date.month
+print(cars['month'])
+df=cars.groupby(['month', 'Manufacturer', 'Model']).sum('Sales_in_thousands').sort_values(['month', 'Sales_in_thousands'], ascending=False)
+print(df)
+top_five=df.groupby('month').head(5)
+print(top_five)
